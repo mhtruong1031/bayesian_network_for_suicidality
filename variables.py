@@ -58,14 +58,18 @@ QN85 = dfN['qn85']
 
 QN93 = dfN['qn93']
 
+entrapment = [QN85, QN93]
+
 # // OUTCOMES //
 # Ideation
 Q26 = df['q26'] # Considered Suicide
 
+ideation = [Q26]
+
 # Actualization
 QN28 = dfN['qn28'] # Attempted suicide
 
-
+behavior = [QN28]
 # // MODERATORS // 
 # Threats to Self Moderators
 QN66     = dfN['qn66']
@@ -81,12 +85,16 @@ Q98_pt = get_binary_dist(Q98) # Difficulty concentrating
 QNILLICT    = dfN['qnillict']
 QNILLICT_pt = get_binary_dist(QNILLICT) # Ever used selct illicit drugs
 
+threats_to_self_moderators = [QN66, QN67_new, Q98, QNILLICT]
+
 # Motivational Moderators
 Q25    = df['q25']
 Q25_pt = get_binary_dist(Q25) # Sad or Hopeless
 
 QN96    = dfN['qn96']
 QN96_pt = get_binary_dist(QN96) # Feel close to people at school
+
+motivational_moderators = [Q25, QN96]
 
 # Volitional Moderators
 QN12 = dfN['qn12'] # Carried weapon on school property
@@ -104,3 +112,15 @@ Q18_pt = get_binary_dist(Q18) # Saw physical violence in neighborhood
 Q27    = df['q27']
 Q27_pt = get_binary_dist(Q27) # Made a suicide plan
 
+volitional_moderators = [QN13_new, QN16, Q18, Q27]
+
+# Relationship in the IMV Model
+relationships = (
+    (defeat, entrapment),
+    (threats_to_self_moderators, entrapment),
+    (entrapment, ideation),
+    (motivational_moderators, ideation),
+    (ideation, behavior),
+    (volitional_moderators, behavior),
+    (diathesis, behavior)
+)
