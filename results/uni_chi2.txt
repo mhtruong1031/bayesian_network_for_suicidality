@@ -1,0 +1,25 @@
+Univariate Results
+--------------------------------------------------------------------
+i: qn22_new  o: qn85  |  coef: 1.2587891736481759e-98
+i: qn22_new  o: qn93  |  coef: 3.5514248595642624e-97
+i: q23_new  o: qn85  |  coef: 3.452909005159986e-132
+i: q23_new  o: qn93  |  coef: 4.117721405635026e-111
+i: qn66  o: qn85  |  coef: 3.755629545265278e-49
+i: qn66  o: qn93  |  coef: 3.944354240973326e-27
+i: qn67_new  o: qn85  |  coef: 1.848460631169553e-52
+i: qn67_new  o: qn93  |  coef: 6.376418152215472e-38
+i: q98  o: qn85  |  coef: 0.0
+i: q98  o: qn93  |  coef: 0.0
+i: qnillict  o: qn85  |  coef: 8.43835435295808e-48
+i: qnillict  o: qn93  |  coef: 1.5866470061619117e-63
+i: qn85  o: q26  |  coef: 0.0
+i: qn93  o: q26  |  coef: 0.0
+i: q25  o: q26  |  coef: 0.0
+i: qn96  o: q26  |  coef: 1.1685972477789038e-56
+i: q26  o: qn28  |  coef: 0.0
+i: qn13_new  o: qn28  |  coef: 6.332309979212744e-99
+i: qn16  o: qn28  |  coef: 3.0709609273004107e-72
+i: q18  o: qn28  |  coef: 9.19801181329857e-118
+i: q27  o: qn28  |  coef: 0.0
+i: qn87  o: qn28  |  coef: 3.139942223029509e-42
+i: qn94  o: qn28  |  coef: 1.7651645885678298e-16
