@@ -20,8 +20,8 @@ def get_recoded_var(var_list: list, var_name: str) -> pd.Series:
 
 
 # Import datasets
-df  = pd.read_csv('resources/XXHq copy.csv')
-dfN = pd.read_csv('resources/XXHqn copy.csv') # Contains calculated variables
+df  = pd.read_csv('resources/XXHq.csv')
+dfN = pd.read_csv('resources/XXHqn.csv') # Contains calculated variables
 
 # // SUFFIX MEANINGS //
 # _pt - probability table

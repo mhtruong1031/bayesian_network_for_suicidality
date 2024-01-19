@@ -1,71 +1,17 @@
+import pandas as pd
 from pgmpy.models import BayesianNetwork
-from variables import *
+from variables import relationships, all_var
 
-'''
-Using the Integrated Motivational-Volitional Model (IVM) as a Framework
+model = BayesianNetwork() # .predict() for states .predict_probability() for probability
+edges = []
 
-Diathesis
-QN87: Usually did not sleep in their parent's or guardian's home
-QN94: Reported that an adult in their home lost their job during the COVID-19 pandemic 	
+for relation in relationships:
+    input  = relation[0]
+    output = relation[1]
 
-Defeat
-Q23_new: Bullied
-    Q23: Bullying at school 
-    Q24: Electronic bullying
-QN22_new: Sexual or Dating Violence
-    Q19: Forced sexual intercourse 
-    QN22: Physical dating violence
+    for i in input:
+        for o in output:
+            edges.append((i.name, o.name))
 
-Threat to Self Moderators
-QN66: Negative Perception of weight 
-QN67_new: Negative Perception of and Trying to Lose Weight
-    QN67: Trying to lose weight
-Q98: Difficulty concentrating
-QNILLICT: Ever used select illicit drugs
-
-Entrapment
-QN85: Reported that their mental health was most of the time or always not good 
-QN93: Reported that their mental health was most of the time or always not good during the COVID-19 pandemic 
-
-Motivational Moderations
-Q25: Sad or hopeless 
-QN96: Feel close to people at their school
-
-Ideation
-Q26: Considered suicide 
-
-Volitional Moderators
-QN13_new: Carried a weapon
-    QN12: Carried a weapon on school property
-    QN13: Carried a gun
-QN16: Were in a physical fight 
-Q18: Saw physical violence in the neighborhood
-Q27: Made a suicide plan
-
-Behavior
-QN28: Attempted suicide
-'''
-
-
-# // DIATHESIS //
-
-
-# // MOTIVATIONAL STAGES //
-# Defeat
-
-# Entrapment
-
-
-# // OUTCOMES //
-# Ideation
-
-# Actualization
-
-
-# // MODERATORS // 
-# Threats to Self Moderators
-
-# Motivational Moderators
-
-# Volitional Moderators
-
+model.add_edges_from(edges)
+model.fit(all_var)

@@ -5,6 +5,23 @@ from variables import relationships
 
 regression = LogisticRegression()
 
+def main() -> None:
+    log_logit = "Univariate Results\n--------------------------------------------------------------------\n"
+    log_chi2  = "Univariate Results\n--------------------------------------------------------------------\n"
+    for relation in relationships:
+        input  = relation[0]
+        output = relation[1]
+
+        for var_i in input:
+            for var_o in output:
+                log_logit += f"i: {var_i.name}  o: {var_o.name}  |  coef: {get_uni_logit_results(var_i, var_o)}\n"
+                log_chi2  += f"i: {var_i.name}  o: {var_o.name}  |  coef: {get_uni_chi2_results(var_i, var_o)}\n"
+    
+    with open('results/uni_logit.txt', 'w') as f:
+        f.write(log_logit)
+    with open('results/uni_chi2.txt', 'w') as f:
+        f.write(log_chi2)
+
 # returns r-value of logistic regression
 def get_uni_logit_results(input: pd.Series, output: pd.Series):
     clean_data = pd.concat([input, output], axis=1).dropna() # remove Nan values
@@ -22,24 +39,6 @@ def get_uni_chi2_results(input: pd.Series, output: pd.Series):
     contingency_table = pd.crosstab(clean_data[output.name], clean_data[input.name])
 
     return chi2_contingency(contingency_table).pvalue
-
-def main() -> None:
-    log_logit = "Univariate Results\n--------------------------------------------------------------------\n"
-    log_chi2  = "Univariate Results\n--------------------------------------------------------------------\n"
-    for relationship in relationships:
-        input  = relationship[0]
-        output = relationship[1]
-
-        for var_i in input:
-            for var_o in output:
-                log_logit += f"i: {var_i.name}  o: {var_o.name}  |  coef: {get_uni_logit_results(var_i, var_o)}\n"
-                log_chi2  += f"i: {var_i.name}  o: {var_o.name}  |  coef: {get_uni_chi2_results(var_i, var_o)}\n"
-    
-    with open('results/uni_logit.txt', 'a') as f:
-        f.write(log_logit)
-    with open('results/uni_chi2.txt', 'a') as f:
-        f.write(log_chi2)
-
 
 if __name__ == '__main__':
     main()
