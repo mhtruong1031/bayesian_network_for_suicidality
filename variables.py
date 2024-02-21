@@ -95,7 +95,7 @@ all_var       = pd.concat(diathesis+defeat+entrapment+ideation+behavior+threats_
 
 training_idx  = round(len(all_var.index) * .80)
 training_data = all_var.loc[[i for i in range(training_idx)]]
-testing_data  = all_var.loc[[i for i in range(training_idx, len(all_var.index))]]
+testing_data  = all_var.loc[[i for i in range(training_idx, len(all_var.index))]].reset_index()
 
 # Relationship in the IMV Model
 relationships = (

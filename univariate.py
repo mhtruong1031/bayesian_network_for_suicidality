@@ -7,7 +7,7 @@ regression = LogisticRegression()
 
 def main() -> None:
     log_logit = "Univariate Results\n--------------------------------------------------------------------\n"
-    log_chi2  = "Univariate Results\n--------------------------------------------------------------------\n"
+    log_chi2  = "Chi-Square Results\n--------------------------------------------------------------------\n"
     for relation in relationships:
         input  = relation[0]
         output = relation[1]
@@ -17,13 +17,13 @@ def main() -> None:
                 log_logit += f"i: {var_i.name}  o: {var_o.name}  |  coef: {get_uni_logit_results(var_i, var_o)}\n"
                 log_chi2  += f"i: {var_i.name}  o: {var_o.name}  |  coef: {get_uni_chi2_results(var_i, var_o)}\n"
     
-    with open('results/uni_logit.txt', 'w') as f:
-        f.write(log_logit)
+    #with open('results/uni_logit.txt', 'w') as f:
+        #f.write(log_logit)
     with open('results/uni_chi2.txt', 'w') as f:
         f.write(log_chi2)
 
 # returns r-value of logistic regression
-def get_uni_logit_results(input: pd.Series, output: pd.Series):
+def get_uni_logit_results(input: pd.Series, output: pd.Series) -> float:
     clean_data = pd.concat([input, output], axis=1).dropna() # remove Nan values
 
     x = clean_data[input.name].to_numpy().reshape((-1, 1))
@@ -34,9 +34,10 @@ def get_uni_logit_results(input: pd.Series, output: pd.Series):
     return regression.score(x, y)
 
 # returns p-value of chi-square test
-def get_uni_chi2_results(input: pd.Series, output: pd.Series):
-    clean_data        = pd.concat([input, output], axis=1).dropna() # remove Nan values
+def get_uni_chi2_results(input: pd.Series, output: pd.Series) -> float:
+    clean_data        = pd.concat([input, output], axis=1).dropna().sample(n=250) # remove Nan values
     contingency_table = pd.crosstab(clean_data[output.name], clean_data[input.name])
+    print(contingency_table)
 
     return chi2_contingency(contingency_table).pvalue
 
